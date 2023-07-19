@@ -16,27 +16,77 @@
              #tvStreamer, #tvStreamer_html5_api{
                 width: 100%;
             }
+            .vjs-modal-dialog, .vjs-control-text, .vjs-big-play-button{
+                visibility: hidden;
+            }
         </style>
     </head>
     <body>
         <div id="playerControls">
             <button id="pausePlayCustomButton" value="pause" onclick="customPlayPause()">Pause</button>
+            <button id="muteUnmuteCustomButton" value="pause" onclick="customMuteUnmute()">Unmute</button>
+            <form id ="tvRemoteForm" method="post" action="/">
+                <button id="nextCustomButton" value="next" onclick="customNextChannel()">Next</button>
+            </form>
         </div>
         <video id="tvStreamer"  autoplay playsinline muted>
             <source src="out.m3u8" type="application/x-mpegURL">
         </video>
         <script>
-            var player = videojs('tvStreamer');
+            var playerTV = videojs('tvStreamer',{
+                controlBar:false,
+                loadingSpinner: false,
+                errorDisplay: false,
+                captionsButton: false,
+                chaptersButton: false,
+                subtitlesButton: false,
+                progressControl: false,
+                remainingTimeDisplay: false,
+                fullscreenToggle: false,
+                playbackRateMenuButton: false
+            });
             function customPlayPause() {
                 let customButtonContent = "";
-                if(player.paused()){
-                    customButtonContent  = "Play";
-                    player.play();
+                if(playerTV.paused()){
+                    customButtonContent  = "Pause";
+                    playerTV.play();
                 }else{
-                    customButtonContent = "Pause";
-                    player.pause();
+                    customButtonContent = "Play";
+                    playerTV.pause();
                 }
                 document.getElementById("pausePlayCustomButton").innerHTML = customButtonContent;
+            }
+            function customMuteUnmute() {
+                let customPauseButtonContent = "";
+                if(playerTV.muted()){
+                    customPauseButtonContent  = "Mute";
+                    playerTV.muted(false);
+                }else{
+                    customPauseButtonContent = "Unmute";
+                    playerTV.muted(true);
+                }
+                document.getElementById("muteUnmuteCustomButton").innerHTML = customPauseButtonContent;
+            }
+            // disable right click
+            var playerTVelement = document.getElementById("tvStreamer");
+            if (playerTVelement.addEventListener) {
+                playerTVelement.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                }, false);
+            } else {
+                playerTVelement.attachEvent('oncontextmenu', function() {
+                    window.event.returnValue = false;
+                });
+            }
+            let tvRemoteFormElement = document.getElementById("tvRemoteForm");
+            tvRemoteFormElement.onsubmit = function (e) {
+                e.preventDefault();
+                fetch(form.action, {
+                    method: "post",
+                    body: "salut"
+                }).then(response => {
+                    // do something with the response...
+                });
             }
         </script>
     </body>

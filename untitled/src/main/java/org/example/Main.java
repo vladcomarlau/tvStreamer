@@ -10,41 +10,47 @@ import java.nio.file.Path;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
-
+        var credentials = new credentials();
         var addr = new InetSocketAddress("192.168.0.148", 8080);
         var server = SimpleFileServer.createFileServer(
                 addr,
-                Path.of(new File(".").getAbsolutePath()+"/untitled/src/main/java/org/example/stream/"),
-                SimpleFileServer.OutputLevel.VERBOSE);
+                Path.of(new File(".").getAbsolutePath()
+                        +"/untitled/src/main/java/org/example/stream/"),
+                SimpleFileServer.OutputLevel.NONE); //verbose or info
 
         server.createContext("/login", new MyHandler()).
                 setAuthenticator(new BasicAuthenticator("test") {
             @Override
             public boolean checkCredentials(String user, String pwd) {
-                return user.equals("vlad") && pwd.equals("4444%Streamer");
+                return user.equals(credentials.getUserName())
+                        && pwd.equals(credentials.getPassWord());
             }
         });
         server.setExecutor(null);
         server.start();
 
-        var ffmpeg = new ffmpegExecuter();
+        //var ffmpeg = new ffmpegExecuter();
     }
 }
 class MyHandler implements HttpHandler {
-    public void handle(HttpExchange t) throws IOException {
-        StringBuilder htmlFile = new StringBuilder();
+    public String fileToString(Path path) throws IOException {
+        StringBuilder stringBuilder = new StringBuilder();
         String FileContent;
-        var file = new File("C:\\Users\\Anonymous\\Downloads\\test\\untitled\\src\\main\\resources\\home.html");
+        var file = new File(path.toUri());
         BufferedReader input = new BufferedReader(new FileReader(file));
-
         while((FileContent = input.readLine())!=null){
-            htmlFile.append(FileContent);
+            stringBuilder.append(FileContent);
         }
-
         input.close();
-        System.out.println(htmlFile);
-        String response = String.valueOf(htmlFile);
+        return String.valueOf(stringBuilder);
+    }
+    public void handle(HttpExchange t) throws IOException {
+        var httpFilePath =
+                Path.of(new File(".").getAbsolutePath()+
+                        "/untitled/src/main/resources/home.html");
+        var response = fileToString(httpFilePath);
         t.sendResponseHeaders(200, response.length());
+
         OutputStream os = t.getResponseBody();
         os.write(response.getBytes());
         os.close();
