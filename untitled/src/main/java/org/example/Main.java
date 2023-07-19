@@ -6,6 +6,7 @@ import com.sun.net.httpserver.SimpleFileServer;
 
 import java.io.*;
 import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
 public class Main {
@@ -45,6 +46,18 @@ class MyHandler implements HttpHandler {
         return String.valueOf(stringBuilder);
     }
     public void handle(HttpExchange t) throws IOException {
+        InputStream is = t.getRequestBody();
+        BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+        StringBuilder content = new StringBuilder();
+        String line;
+
+        while ((line = br.readLine()) != null) { // br.readLine is always null!!!
+            content.append(line);
+            content.append("\n");
+        }
+
+        System.out.println("Content: " + content.toString());
+
         var httpFilePath =
                 Path.of(new File(".").getAbsolutePath()+
                         "/untitled/src/main/resources/home.html");
