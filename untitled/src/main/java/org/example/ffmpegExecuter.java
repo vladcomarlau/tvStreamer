@@ -11,7 +11,7 @@ public class ffmpegExecuter extends Thread{
     public ProcessBuilder builder;
     public Process p;
     public ffmpegExecuter() throws IOException, InterruptedException {
-        var streamFilesLocation = Path.of(new File(".").getAbsolutePath()+"/untitled/src/main/java/org/example/stream").toAbsolutePath();
+        var streamFilesLocation = Path.of(new File(".").getAbsolutePath()+"/untitled/src/main/java/org/example/stream/video").toAbsolutePath();
         var command = " cmd.exe /c start " +
                 "ffmpeg -f dshow -framerate 30 -pixel_format yuyv422 -i video=\"" +
                 "USB Video\":audio=\"Digital Audio Interface (USB Digital Audio)\" -b:v 1.4M -b:a 96k " +

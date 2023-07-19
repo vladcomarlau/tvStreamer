@@ -1,4 +1,5 @@
 org/example/credentials.java
+org/example/stream/video
 
 target/
 !.mvn/wrapper/maven-wrapper.jar

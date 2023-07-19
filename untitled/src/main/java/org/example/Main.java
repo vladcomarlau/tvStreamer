@@ -30,7 +30,7 @@ public class Main {
         server.setExecutor(null);
         server.start();
 
-        //var ffmpeg = new ffmpegExecuter();
+        var ffmpeg = new ffmpegExecuter();
     }
 }
 class MyHandler implements HttpHandler {
