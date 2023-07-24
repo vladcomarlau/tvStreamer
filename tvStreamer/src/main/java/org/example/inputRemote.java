@@ -42,7 +42,7 @@ public class inputRemote {
         }
     }
     public static void processCommands(String key) throws IOException {
-        if(key.contains("OK")){
+        if(key.equals("OK")){
             sendCommand(key);
         }else if(Character.isDigit(key.charAt(0))){
             for(int i = 0; i<key.length();i++){
