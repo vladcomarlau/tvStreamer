@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="home.css" />
+        <title>tvStreamer</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.14.1/videojs-contrib-hls.js"></script>
+        <script src="https://vjs.zencdn.net/7.2.3/video.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    </head>
+    <body onload="hideControls()" id="body">
+        <div id="playerControls">
+            <button id="muteUnmuteCustomButton" value="pause" onclick="customMuteUnmute()">
+                <img class="icons" src = "muted.svg"/>
+            </button>
+        </div>
+        <div id="channelList" onscroll="showControls();">
+            <div id="channelListSpacer"></div>
+        </div>
+        <video id="tvStreamer"  autoplay playsinline muted>
+            <source src="/video/out.m3u8" type="application/x-mpegURL">
+        </video>
+        <script>
+            var playerTV = videojs('tvStreamer',{
+                controlBar:false,
+                loadingSpinner: false,
+                errorDisplay: false,
+                captionsButton: false,
+                chaptersButton: false,
+                subtitlesButton: false,
+                progressControl: false,
+                remainingTimeDisplay: false,
+                fullscreenToggle: false,
+                playbackRateMenuButton: false
+            });
+            var playerTVelement = document.getElementById("tvStreamer");
+            var bodyElement = document.getElementById("body");
+            var muteButton = document.getElementById("muteUnmuteCustomButton");
+            var channelList = document.getElementById("channelList");
+            function hideControls(){
+                muteButton.classList.add("vjs-fade-out");
+                channelList.classList.add("vjs-fade-out");
+            }
+            function showControls(){
+                muteButton.classList.remove("vjs-fade-out");
+                channelList.classList.remove("vjs-fade-out");
+                window.setTimeout(function(){
+                    hideControls();
+                }, 300);
+            }
+
+            playerTVelement.addEventListener("mousemove",function(){
+                showControls();
+                window.setTimeout(function(){
+                    hideControls();
+                }, 300);
+            });
+            bodyElement.addEventListener("touchend",function(){
+                hideControls();
+            });
+            bodyElement.addEventListener("touchmove",function(){
+                showControls();
+            });
+            bodyElement.addEventListener("touchstart",function(){
+                showControls();
+                window.setTimeout(function(){
+                    hideControls();
+                }, 300);
+            });
+            function customMuteUnmute() {
+                let customPauseButtonContent = "";
+                if(playerTV.muted()){
+                    customPauseButtonContent  = "<img class=\"icons\" src = \"unmuted.svg\"/>";
+                    playerTV.muted(false);
+                }else{
+                    customPauseButtonContent = "<img class=\"icons\" src = \"muted.svg\"/>";
+                    playerTV.muted(true);
+                }
+                muteButton.innerHTML = customPauseButtonContent;
+            }
+            // disable right click
+
+            if (playerTVelement.addEventListener) {
+                playerTVelement.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                }, false);
+            } else {
+                playerTVelement.attachEvent('oncontextmenu', function () {
+                    window.event.returnValue = false;
+                });
+            }
+        </script>
+        <script>
+            for(i = 1; i < 301; i++){
+                const form = document.createElement("form");
+                form.setAttribute("class","tvRemoteForm");
+                form.setAttribute("action","");
+                const input = document.createElement("input");
+                input.setAttribute("type","hidden");
+                input.setAttribute("class","tvRemoteButton");
+                input.setAttribute("name","tvRemoteButton");
+                input.setAttribute("value",String(i));
+                form.append(input);
+                const button = document.createElement("button");
+                button.setAttribute("type","submit");
+                button.setAttribute("class","submitButton");
+                button.innerHTML = String(i);
+                form.append(button);
+                channelList.append(form);
+            }
+            const div = document.createElement("div");
+            div.setAttribute("id","channelListSpacer");
+            channelList.append(div);
+        </script>
+        <script>
+            $('.tvRemoteForm').submit(function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/home",
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        console.log(data);
+                        $('.result').html(data);
+                    }
+                });
+            });
+        </script>
+
+    </body>
+</html>
