@@ -1,8 +1,8 @@
 package org.example;
 
 public class credentials {
-    private static String userName = "comarlau";
-    private static String passWord = "44Streamer55%";
+    private static String userName = "";
+    private static String passWord = "";
     public static String getUserName(){
         return userName;
     }
