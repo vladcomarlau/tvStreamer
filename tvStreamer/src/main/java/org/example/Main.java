@@ -29,7 +29,10 @@ public class Main {
                 });
         server.setExecutor(null);
         server.start();
+        System.out.println("Server started: " + addr);
         new ffmpegExecuter();
+        new arduinoSerial();
+
     }
 }
 class MyHandler implements HttpHandler {
@@ -55,13 +58,18 @@ class MyHandler implements HttpHandler {
             content.append("\n");
         }
 
-        inputRemote.decodeQueryString(content.toString());
-        inputRemote.processCommands(String.valueOf(inputRemote.parameters.get("tvRemoteButton")));
+        arduinoSerial.decodeQueryString(content.toString());
+        try {
+            arduinoSerial.processCommands(String.valueOf(arduinoSerial.parametersReceived.get("tvRemoteButton")));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         var httpFilePath =
                 Path.of(new File(".").getAbsolutePath()+
                         "/tvStreamer/src/main/java/org/example/stream/home.html");
         var response = fileToString(httpFilePath);
+
         t.sendResponseHeaders(200, response.length());
 
         OutputStream os = t.getResponseBody();

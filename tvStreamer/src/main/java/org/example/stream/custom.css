@@ -1,0 +1,438 @@
+body {
+    margin:0px;
+    background: black;
+    color: white;
+    height: 100%;
+    overflow-y: hidden;
+    -webkit-text-size-adjust: none;
+}
+
+#tvStreamer_html5_api{
+    z-index: 1;
+}
+#channelList, #channelListBorder{
+    position: fixed;
+    width:200px;
+    right:0px;
+    height: 100%;
+    top:0;
+    background: rgb(150 150 150 / 0.4);
+    border-radius: 0px;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    z-index: 20;
+    backdrop-filter:
+            blur(30px)
+            brightness(150%)
+            contrast(70%)
+            saturate(250%);
+    -webkit-backdrop-filter:
+            blur(30px)
+            brightness(150%)
+            contrast(70%)
+            saturate(250%);
+
+}
+#channelListBorder{
+    width:201px;
+    right:0px;
+    background: rgb(0 0 0 / 0.02);
+    backdrop-filter:
+            blur(30px)
+            brightness(120%)
+            contrast(50%)
+            saturate(200%);
+    -webkit-backdrop-filter:
+            blur(30px)
+            brightness(120%)
+            contrast(50%)
+            saturate(200%);
+}
+#channelListSpacer{
+    margin-top: 9%;
+}
+.submitButton{
+    overflow: auto;
+    white-space: nowrap;
+    padding-left: 0px;
+    height: 50px;
+    margin:4px;
+    margin-left:7px;
+    background: none;
+    border: none;
+}
+.channelNumber{
+    display: inline-block;
+    text-align: right;
+    width: 20px;
+    margin: 0px;
+    opacity: 0.8;
+    text-shadow: 0px 4px 7px rgb( 0 0 0 / 0.4);
+    color: white;
+    font-weight: 400;
+    font-size: x-large;
+}
+.channelName{
+    margin-left: 28px;
+    margin-bottom:-10px;
+    background: black;
+    padding: 10px;
+    max-width: 160px;
+    max-height: 28px;
+    border-radius: 20px;
+    opacity: 60%;
+    object-fit: cover;
+    filter: contrast(200%)
+    invert(90%);
+    box-shadow: 0px 0px 5px rgb(255 255 255 / 0.4);
+}
+html {
+    overflow:   scroll;
+    height: 100%;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+#customSpinnerContainer, #customSpinnerContainerBorder{
+    position:fixed;
+    left: calc(50vw - 50px);
+    top: calc(5vw - 10px);
+    border-radius: 35px;
+    width: 100px;
+    height: 100px;
+    background: rgb(150 150 150 / 0.5);
+    backdrop-filter:
+            blur(30px)
+            brightness(140%)
+            contrast(70%)
+            saturate(250%);
+    -webkit-backdrop-filter:
+            blur(30px)
+            brightness(140%)
+            contrast(70%)
+            saturate(250%);
+}
+#customSpinnerContainerBorder{
+    left: calc(50vw - 51px);
+    top: calc(5vw - 11px);
+    width: 102px;
+    height: 102px;
+    background: rgb(0 0 0 / 0.02);
+    backdrop-filter:
+            blur(30px)
+            brightness(120%)
+            contrast(50%)
+            saturate(200%);
+    -webkit-backdrop-filter:
+            blur(30px)
+            brightness(120%)
+            contrast(50%)
+            saturate(200%);
+    z-index:9999;
+}
+#customSpinnerSignal{
+    margin: calc(50% - 15px);
+    margin-top: 15px;
+    margin-bottom:0;
+    width: 30px;
+    opacity: 0.75;
+    filter: invert(48%)
+    sepia(79%)
+    saturate(0%)
+    hue-rotate(6deg)
+    brightness(158%)
+    contrast(119%)
+}
+#customSpinnerRemote{
+    margin-left:calc(50% - 20px);
+    margin-top: -14px;
+    width: 40px;
+    filter: invert(48%)
+    sepia(79%)
+    saturate(0%)
+    hue-rotate(6deg)
+    brightness(158%)
+    contrast(119%)
+    drop-shadow(0px 5px 25px rgb(20 20 20 / 0.6));
+}
+#pausePlayIcon{
+    border:none;
+    width: 30px;
+    height: 30px;
+    opacity: 0.88;
+    font-size: x-large;
+    color: white;
+    background: none;
+    filter: invert(48%)
+    sepia(79%)
+    saturate(0%)
+    hue-rotate(6deg)
+    brightness(158%)
+    contrast(119%)
+}
+#pausePlayCustomButton{
+    filter: drop-shadow(0px 5px 15px rgb(20 20 20 / 0.6));
+    background: none;
+    border: none;
+    padding: 15px;
+}
+#muteUnmuteCustomIcon{
+    border:none;
+    width: 28px;
+    font-size: x-large;
+    color: white;
+    opacity: 0.93;
+    background: none;
+    filter: invert(48%)
+    sepia(79%)
+    saturate(0%)
+    hue-rotate(6deg)
+    brightness(158%)
+    contrast(119%)
+}
+#muteUnmuteCustomButton{
+    filter: drop-shadow(0px 5px 13px rgb(20 20 20 / 0.7));
+    padding: 17px;
+    background: none;
+    border:none;
+}
+#fullscreenCustomIcon{
+    width: 25px;
+    height: 25px;
+    border:none;
+    font-size: x-large;
+    color: white;
+    opacity: 0.93;
+    background: none;
+    filter: invert(48%)
+    sepia(79%)
+    saturate(0%)
+    hue-rotate(6deg)
+    brightness(158%)
+    contrast(119%)
+}
+#fullscreenCustomButton{
+    filter: drop-shadow(0px 5px 7px rgb(20 20 20 / 0.5));
+    padding:15px;
+    background: none;
+    border:none;
+}
+
+#infoButtonForm{
+    border:none;
+    font-size: x-large;
+    color: white;
+    opacity: 0.88;
+    background: none;
+    filter: invert(48%)
+    sepia(79%)
+    saturate(0%)
+    hue-rotate(6deg)
+    brightness(158%)
+    contrast(119%)
+    drop-shadow(0px 5px 10px rgb(20 20 20 / 0.4));
+}
+#infoButtonIcon{
+    width: 31px;
+    height: 31px;
+}
+#infoButton{
+    background: none;
+    border: 0;
+    padding:14px;
+}
+#powerButtonForm{
+    margin: 0;
+    border:none;
+    padding:0;
+    font-size: x-large;
+    color: white;
+    opacity:0.77;
+    background: none;
+    filter: invert(48%)
+    sepia(79%)
+    saturate(0%)
+    hue-rotate(6deg)
+    brightness(158%)
+    contrast(119%)
+    drop-shadow(0px 5px 10px rgb(20 20 20 / 0.6));
+}
+#powerButtonIcon{
+    width: 30px;
+    height: 30px;
+}
+#powerButton{
+    background: none;
+    border: 0;
+    width: 100%;
+    padding: 13px;
+}
+#backButtonIcon{
+    border:none;
+    width: 26px;
+    height: 26px;
+    font-size: x-large;
+    color: white;
+    opacity:0.77;
+    background: none;
+    filter: invert(48%)
+    sepia(79%)
+    saturate(0%)
+    hue-rotate(6deg)
+    brightness(158%)
+    contrast(119%)
+    drop-shadow(0px 5px 7px rgb(20 20 20 / 0.4));
+}
+#backButton, #backButtonForm{
+    background: none;
+    border: 0;
+    padding: 0;
+}
+#backButton{
+    padding:17px;
+}
+#channelPlusIcon, #channelMinusIcon{
+    border:none;
+    padding-left:1px;
+    width: 31px;
+    height: 31px;
+    font-size: x-large;
+    color: white;
+    opacity: 0.9;
+    background: none;
+    filter: invert(48%)
+    sepia(79%)
+    saturate(0%)
+    hue-rotate(6deg)
+    brightness(158%)
+    contrast(119%)
+}
+#channelPlusButton, #channelMinusButton{
+    filter: drop-shadow(0px 5px 17px rgb(20 20 20 / 0.6));
+    padding:14px;
+    background: none;
+    border: none;
+}
+#playerControls{
+    position: absolute;
+    z-index: 20;
+}
+#customMenuBar, #customMenuBarBorder{
+    position: fixed;
+    background: rgb(150 150 150 / 0.5);
+    bottom:21px;
+    left: 40px;
+    width:60px;
+    height: calc(100% - 45px);
+    max-height: 495px;
+    border-radius: 50px;
+    overflow: scroll;
+    display: inline-flex;
+    flex-direction: column-reverse;
+    backdrop-filter:
+    blur(20px)
+    brightness(150%)
+    contrast(70%)
+    saturate(250%);
+    -webkit-backdrop-filter:
+            blur(20px)
+            brightness(150%)
+            contrast(70%)
+            saturate(250%);
+}
+#customMenuBarBorder{
+    bottom:20px;
+    left: 39px;
+    width:62px;
+    height: calc(100% - 43px);
+    max-height: 497px;
+    background: rgb(0 0 0 / 0.02);
+    backdrop-filter:
+    blur(30px)
+    brightness(120%)
+    contrast(50%)
+    saturate(200%);
+    -webkit-backdrop-filter:
+            blur(30px)
+            brightness(120%)
+            contrast(50%)
+            saturate(200%);
+}
+.tvRemoteForm{
+    margin:0;
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+#customMenuBar::-webkit-scrollbar, #customMenuBarBorder::-webkit-scrollbar{
+    display: none;
+}
+#tvStreamer, #tvStreamer_html5_api{
+    width: 100%;
+}
+.vjs-modal-dialog, .vjs-control-text, .vjs-big-play-button{
+    visibility: hidden;
+}
+.vjs-fade-out-remote {
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: visibility 1.5s, opacity 1.5s;
+    -moz-transition: visibility 1.5s, opacity 1.5s;
+    -ms-transition: visibility 1.5s, opacity 1.5s;
+    -o-transition: visibility 1.5s, opacity 1.5s;
+    transition: visibility 1.5s, opacity 1.5s;
+    -webkit-transition-delay: 3s;
+    -moz-transition-delay: 3s;
+    -ms-transition-delay: 3s;
+    -o-transition-delay: 3s;
+    transition-delay: 3s;
+}
+.vjs-fade-out {
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: visibility 1.5s, opacity 1.5s;
+    -moz-transition: visibility 1.5s, opacity 1.5s;
+    -ms-transition: visibility 1.5s, opacity 1.5s;
+    -o-transition: visibility 1.5s, opacity 1.5s;
+    transition: visibility 1.5s, opacity 1.5s;
+    -webkit-transition-delay: 3s;
+    -moz-transition-delay: 3s;
+    -ms-transition-delay: 3s;
+    -o-transition-delay: 3s;
+    transition-delay: 3s;
+}
+
+@media only screen and (max-width: 700px) {
+    #channelListBorder {
+        height:calc(100% - 56vw);
+        top:calc(56vw + 2px);
+        width:65%;
+    }
+    #channelList{
+        height:calc(100% - 56vw);
+        top:calc(56vw + 2px);
+        width:65%;
+    }
+    #customMenuBar{
+        max-height: min(calc(100% - 68vw), 500px);
+        box-shadow: inset 0 10px 10px -6px rgb(50 50 50 / 1);
+    }
+    #customMenuBarBorder{
+        max-height: min(calc(100% - 68vw + 2px), 502px);
+    }
+    .vjs-fade-out {
+        visibility: visible;
+        opacity: 100%;
+        -webkit-transition: visibility 1.5s, opacity 1.5s;
+        -moz-transition: visibility 1.5s, opacity 1.5s;
+        -ms-transition: visibility 1.5s, opacity 1.5s;
+        -o-transition: visibility 1.5s, opacity 1.5s;
+        transition: visibility 1.5s, opacity 1.5s;
+        -webkit-transition-delay: 3s;
+        -moz-transition-delay: 3s;
+        -ms-transition-delay: 3s;
+        -o-transition-delay: 3s;
+        transition-delay: 3s;
+    }
+}

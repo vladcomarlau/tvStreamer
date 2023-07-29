@@ -1,0 +1,104 @@
+package org.example;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import com.fazecast.jSerialComm.SerialPort;
+public class arduinoSerial {
+    public static SerialPort serialPort;
+    public static HashMap<String, Integer> keyCodes;
+    public static Map parametersReceived;
+    public arduinoSerial(){
+        keyCodes = new HashMap<>();
+        keyCodes.put("power",       68157695);
+        keyCodes.put("1",           68171975);
+        keyCodes.put("2",           68204615);
+        keyCodes.put("3",           68188295);
+        keyCodes.put("4",           68158205);
+        keyCodes.put("5",           68190845);
+        keyCodes.put("6",           68174525);
+        keyCodes.put("7",           68166365);
+        keyCodes.put("8",           68199005);
+        keyCodes.put("9",           68182685);
+        keyCodes.put("0",           68215325);
+        keyCodes.put("channelPlus", 68182175);
+        keyCodes.put("channelMinus",68214815);
+        keyCodes.put("volumePlus",  68174015);
+        keyCodes.put("volumeMinus", 68206655);
+        keyCodes.put("info",        68160245);
+        keyCodes.put("left",        68167895);
+        keyCodes.put("right",       68184215);
+        keyCodes.put("up",          68176055);
+        keyCodes.put("down",        68208695);
+        keyCodes.put("ok",          68200535);
+        keyCodes.put("exit",        68159735);
+        keyCodes.put("opt",         68217365);
+        keyCodes.put("back",        68169935);
+        keyCodes.put("guide",       68202575);
+        keyCodes.put("media",       68180645);
+        keyCodes.put("menu",        68192375);
+        serialPort = SerialPort.getCommPort(SerialPort.getCommPorts()[0].getSystemPortName());
+        serialPort.setBaudRate(115200);
+        System.out.println("Arduino port " +
+                SerialPort.getCommPorts()[0].getSystemPortName() +
+                " opened: " + serialPort.openPort());
+    }
+    public static void decodeQueryString(String query) {
+        try {
+            Map<String, String> params = new LinkedHashMap<>();
+            for (String param : query.split("&")) {
+                String[] keyValue = param.split("=", 2);
+                String key = URLDecoder.decode(keyValue[0], "UTF-8");
+                String value = keyValue.length > 1 ? URLDecoder.decode(keyValue[1], "UTF-8") : "";
+                if (!key.isEmpty()) {
+                    params.put(key, value);
+                }
+            }
+            parametersReceived = params;
+        } catch (UnsupportedEncodingException e) {
+            throw new IllegalStateException(e); // Cannot happen with UTF-8 encoding.
+        }
+    }
+    public static void sendKey(String key) throws IOException {
+        serialPort.getOutputStream().write((String.valueOf(keyCodes.get(key))+"\n").getBytes());
+        serialPort.getOutputStream().flush();
+    }
+    public static void processCommands(String command) throws InterruptedException {
+        var processCommands = new Thread(){
+            public void run(){
+                if(!command.isEmpty()){
+                    try{
+                        if (Character.isDigit(command.charAt(0))) {
+                            System.out.println("Processing command: " + command);
+                            if(command.length()<5) {
+                                for (int i = 0; i < (command.length() - 1); i++) {
+                                    if (Character.isDigit(command.charAt(i))) {
+                                        sendKey(String.valueOf(command.charAt(i)));
+                                        Thread.sleep(200);
+                                    }
+                                }
+                                System.out.println("Sent command: " + command);
+                                Thread.sleep(200);
+                                sendKey("ok");
+                                ffmpegExecuter.ffmpegScreenshot(command);
+                            }
+                        }
+                        else{
+                            sendKey(command.trim());
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        };
+        processCommands.start();
+    }
+}
