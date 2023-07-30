@@ -5,8 +5,9 @@ Features:
   - Real time HD TV cable streaming with ~6 seconds delay
   - Channel grid menu:
       - automatically updates channel name by taking a screenshot when changing channels
-      - automatically sends corresponding number keys in order to jump between channels
-  - Basic username and password authentication using built-in Simple File Server Authenticator
+        (This way it stay updated evem if the TV operator adds/removes TV channels from the channel grid)
+      - automatically sends corresponding number keys in order to jump between channels as fast as possible
+  - Basic username and password authentication using built-in Simple File Server BasicAuthenticator
   - Mobile repsonsive, translucent UI
   - Other controls: channel +/-, channel information, power toggle, back, exit, fullscreen
 
@@ -16,9 +17,12 @@ Hardware used:
   - HDMI USB capture card
     
 Software used:
-  - JAVA Simple File Server
-  - Maven
-  - Mostly vanilla Javascript
+  - FFMPEG for HLS protocol live stream enconding (M3U8 / x-mpegURL manifest file with TS video fragments)
+  - JAVA Simple File Server with multithreading for screenshot synchronization / waiting
+  - jSerialComm for serial port direct USB communication with the ESP8266 microcontroller
+  - Maven for dependency management
+  - Mostly vanilla Javascript with few parts in JQuerry
+  - Vanilla CSS and HTML5
 
 
 
