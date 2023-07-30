@@ -26,7 +26,7 @@ Software used:
   - Mostly vanilla Javascript with few parts in JQuerry
   - Vanilla CSS and HTML5
 
-<img width="579" alt="Screenshot 2023-07-30 at 09 52 53" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/ebb240bd-875a-4882-83d8-c447962cdc1b">
+<img width="579" alt="Screenshot 2023-07-30 at 09 53 18" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/5e88f055-ae74-4eea-9061-3fb084f7dfa2">
 
 
 
