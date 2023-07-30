@@ -11,7 +11,7 @@ Features:
       - automatically sends corresponding number keys in order to jump between channels as fast as possible
   - Basic username and password authentication using built-in Simple File Server BasicAuthenticator
   - Mobile repsonsive, translucent UI
-  - Other controls: channel +/-, channel information, power toggle, back, exit, fullscreen
+  - Other controls: ower receiver on/off, channel information, channel +/-, back, exit, fullscreen, mute, play/pause
 
 Hardware used:
   - TV receiver brand KAON, model NA1410HD
