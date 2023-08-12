@@ -1,7 +1,8 @@
 # tvStreamer
 Java TV set-top box controller and viewer
 <br>
-<img width="571" alt="Screenshot 2023-07-30 at 09 19 00" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/c51d0dc2-0f07-402b-8ff7-33da555d8817">
+<img width="571" alt="1" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/4de1306c-dc4d-45a2-8588-c89c1ef891d4">
+
 
 Features:
   - Real time HD TV cable streaming with ~10 seconds delay
