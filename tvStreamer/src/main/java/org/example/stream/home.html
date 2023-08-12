@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <div id="randomCSS">
-
-        </div>
+        <meta name="theme-color" content="black"/>
+        <div id="randomCSS"></div>
         <script>
             const d = new Date();
             let time = d.getTime();
@@ -12,13 +11,14 @@
         </script>
 
         <meta charset="UTF-8">
+
         <title>tvStreamer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.14.1/videojs-contrib-hls.js"></script>
-        <script src="https://vjs.zencdn.net/7.2.3/video.js"></script>
+        <script src="https://vjs.zencdn.net/8.3.0/video.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     </head>
-    <body id="body" onload="showControls(); showSpinner(1);">
+    <body id="body">
         <div id="playerControls">
             <div id="customMenuBarBorder">
                 <div id="customMenuBar">
@@ -30,34 +30,40 @@
                     </button>
                     <form class="tvRemoteForm" action="" id="channelMinusForm">
                         <input type="hidden" class="tvRemoteButton" name="tvRemoteButton" value="channelMinus">
-                        <button id="channelMinusButton" value="" onclick="showSpinner(5000);">
+                        <button id="channelMinusButton" value="" onclick="showSpinner();">
                             <img id="channelMinusIcon" src="icons/minus.svg">
                         </button>
                     </form>
                     <form class="tvRemoteForm" action="" id="channelPlusForm">
                         <input type="hidden" class="tvRemoteButton" name="tvRemoteButton" value="channelPlus">
-                        <button id="channelPlusButton" value="" onclick="showSpinner(5000);">
+                        <button id="channelPlusButton" value="" onclick="showSpinner();">
                             <img id="channelPlusIcon" src="icons/plus.svg">
                         </button>
                     </form>
                     <form class="tvRemoteForm" action="" id="infoButtonForm">
                         <input type="hidden" class="tvRemoteButton" name="tvRemoteButton" value="info">
-                        <button type="submit" id="infoButton" onclick="showSpinner(5000);">
+                        <button type="submit" id="infoButton" onclick="showSpinner();">
                             <img id="infoButtonIcon" src="icons/info.svg">
-                        </button>
-                    </form>
-                    <form class="tvRemoteForm" action="" id="backButtonForm">
-                        <input type="hidden" class="tvRemoteButton" name="tvRemoteButton" value="back">
-                        <button type="submit" id="backButton" onclick="showSpinner(5000);">
-                            <img id="backButtonIcon" src="icons/back.svg">
                         </button>
                     </form>
                     <button id="fullscreenCustomButton" value="fullscreen" onclick="playerTV.requestFullscreen()">
                         <img id="fullscreenCustomIcon" src="icons/fullscreen.svg">
                     </button>
+                    <form class="tvRemoteForm" action="" id="backButtonForm">
+                        <input type="hidden" class="tvRemoteButton" name="tvRemoteButton" value="back">
+                        <button type="submit" id="backButton" onclick="showSpinner();">
+                            <img id="backButtonIcon" src="icons/back.svg">
+                        </button>
+                    </form>
+                    <form class="tvRemoteForm" action="" id="exitButtonForm">
+                        <input type="hidden" class="tvRemoteButton" name="tvRemoteButton" value="exit">
+                        <button type="submit" id="exitButton" onclick="showSpinner();">
+                            <img id="exitButtonIcon" src="icons/exit.svg">
+                        </button>
+                    </form>
                     <form class="tvRemoteForm" action="" id="powerButtonForm">
                         <input type="hidden" class="tvRemoteButton" name="tvRemoteButton" value="power">
-                        <button type="submit" id="powerButton" onclick="showSpinner(5000);">
+                        <button type="submit" id="powerButton" onclick="showSpinner();">
                             <img id="powerButtonIcon" src="icons/power.svg">
                         </button>
                     </form>
@@ -69,10 +75,10 @@
                 <div id="channelListSpacer"></div>
             </div>
         </div>
-        <video id="tvStreamer" onload="hideControls(); showSpinner(0);"  autoplay playsinline muted>
+        <video id="tvStreamer" autoplay playsinline muted>
             <source src="video/out.m3u8" type="application/x-mpegURL">
         </video>
-        <div id="customSpinnerContainerBorder">
+        <div id="customSpinnerContainerBorder" class="spinnerHidden">
             <div id="customSpinnerContainer">
                 <img id="customSpinnerSignal" src="icons/spinner.svg">
                 <img id="customSpinnerRemote" src="icons/remote.svg">
@@ -98,45 +104,34 @@
             var channelList = document.getElementById("channelList");
             var channelListBorder = document.getElementById("channelListBorder");
             var customSpinnerContainer = document.getElementById("customSpinnerContainerBorder");
-            var customPowerButton = document.getElementById("powerButton");
-            var customFullscreenButton = document.getElementById("fullscreenCustomButton");
-            var channelPlusButton = document.getElementById("channelPlusButton");
-            var channelMinusButton = document.getElementById("channelMinusButton");
             var customMenuBar = document.getElementById("customMenuBarBorder");
             function hideControls(){
                 muteButton.classList.add("vjs-fade-out");
                 channelList.classList.add("vjs-fade-out");
-                customPowerButton.classList.add("vjs-fade-out");
-                customFullscreenButton.classList.add("vjs-fade-out");
                 customPlayButton.classList.add("vjs-fade-out");
-                channelPlusButton.classList.add("vjs-fade-out");
-                channelMinusButton.classList.add("vjs-fade-out");
                 customMenuBar.classList.add("vjs-fade-out");
                 channelListBorder.classList.add("vjs-fade-out");
             }
             function showControls(){
                 muteButton.classList.remove("vjs-fade-out");
                 channelList.classList.remove("vjs-fade-out");
-                customPowerButton.classList.remove("vjs-fade-out");
-                customFullscreenButton.classList.remove("vjs-fade-out");
                 customPlayButton.classList.remove("vjs-fade-out");
-                channelPlusButton.classList.remove("vjs-fade-out");
-                channelMinusButton.classList.remove("vjs-fade-out");
                 customMenuBar.classList.remove("vjs-fade-out");
                 channelListBorder.classList.remove("vjs-fade-out");
                 window.setTimeout(function(){
                     hideControls();
                 }, 300);
             }
-            function showSpinner(x){
+            function showSpinner(){
                 customSpinnerContainer.classList.remove("vjs-fade-out-remote");
+                customSpinnerContainer.classList.remove("spinnerHidden");
                 playerTVelement.classList.add("blurredVideo");
                 playerTVelement.classList.remove("unBlurredVideo");
                 window.setTimeout(function(){
                     customSpinnerContainer.classList.add("vjs-fade-out-remote");
                     playerTVelement.classList.remove("blurredVideo");
                     playerTVelement.classList.add("unBlurredVideo");
-                }, x);
+                }, 10000);
             }
             playerTVelement.addEventListener("mousemove",function(){
                 showControls();
@@ -205,7 +200,7 @@
                 const button = document.createElement("button");
                 button.setAttribute("type","submit");
                 button.setAttribute("class","submitButton");
-                button.setAttribute("onclick","showSpinner(5000);");
+                button.setAttribute("onclick","showSpinner();");
                 const channelNumber = document.createElement("div");
                 channelNumber.setAttribute("class","channelNumber");
                 channelNumber.innerHTML = String(i);
@@ -234,6 +229,12 @@
                     }
                 });
             });
+            $(window).resize(function(){
+                showControls();
+            });
+        </script>
+        <script>
+            showControls();
         </script>
     </body>
 </html>

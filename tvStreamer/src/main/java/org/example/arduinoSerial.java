@@ -67,38 +67,33 @@ public class arduinoSerial {
     public static void sendKey(String key) throws IOException {
         serialPort.getOutputStream().write((String.valueOf(keyCodes.get(key))+"\n").getBytes());
         serialPort.getOutputStream().flush();
+        System.out.println("Sent command: " + key);
     }
     public static void processCommands(String command) throws InterruptedException {
-        var processCommands = new Thread(){
-            public void run(){
-                if(!command.isEmpty()){
-                    try{
-                        if (Character.isDigit(command.charAt(0))) {
-                            System.out.println("Processing command: " + command);
-                            if(command.length()<5) {
-                                for (int i = 0; i < (command.length() - 1); i++) {
-                                    if (Character.isDigit(command.charAt(i))) {
-                                        sendKey(String.valueOf(command.charAt(i)));
-                                        Thread.sleep(200);
-                                    }
-                                }
-                                System.out.println("Sent command: " + command);
-                                Thread.sleep(200);
-                                sendKey("ok");
-                                ffmpegExecuter.ffmpegScreenshot(command);
+        if(!command.isEmpty()){
+            try{
+                if (Character.isDigit(command.charAt(0))) {
+                    if(command.length()<5) {
+                        for (int i = 0; i < (command.length() - 1); i++) {
+                            if (Character.isDigit(command.charAt(i))) {
+                                sendKey(String.valueOf(command.charAt(i)));
+                                Thread.sleep(300);
                             }
                         }
-                        else{
-                            sendKey(command.trim());
-                        }
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                        Thread.sleep(300);
+                        sendKey("ok");
+                        ffmpegExecuter.ffmpegScreenshot(command);
                     }
                 }
+                else{
+                    sendKey(command.trim());
+                    if(command.equals("back")){
+                        sendKey("exit");
+                    }
+                }
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
             }
-        };
-        processCommands.start();
+        }
     }
 }

@@ -18,7 +18,8 @@ public class Main {
                 Path.of(new File(".").getAbsolutePath()
                         +"/tvStreamer/src/main/java/org/example/stream/"),
                 SimpleFileServer.OutputLevel.NONE); //VERBOSE or INFO or NONE
-
+        System.out.println(Path.of(new File(".").getAbsolutePath()
+                +"/tvStreamer/src/main/java/org/example/stream/"));
         server.createContext("/home", new MyHandler()).
                 setAuthenticator(new BasicAuthenticator("test") {
                     @Override
@@ -32,7 +33,6 @@ public class Main {
         System.out.println("Server started: " + addr);
         new ffmpegExecuter();
         new arduinoSerial();
-
     }
 }
 class MyHandler implements HttpHandler {
