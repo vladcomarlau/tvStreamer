@@ -18,7 +18,7 @@ Requirements:
 
 Hardware used:
   - TV receiver brand KAON, model NA1410HD
-  - PLUSIVO Micro ESP8266 with IR transmitter
+  - PLUSIVO Micro ESP8266 with added IR transmitter
   - HDMI USB capture card
     
 Software used:
