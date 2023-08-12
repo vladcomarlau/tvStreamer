@@ -4,7 +4,7 @@ Java TV set-top box controller and viewer
 <img width="571" alt="Screenshot 2023-07-30 at 09 19 00" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/c51d0dc2-0f07-402b-8ff7-33da555d8817">
 
 Features:
-  - Real time HD TV cable streaming with ~6 seconds delay
+  - Real time HD TV cable streaming with ~10 seconds delay
   - Channel grid menu:
       - automatically updates channel name by taking a screenshot when changing channels
         (This way it stays updated evem if the TV operator adds/removes TV channels from the channel grid)
