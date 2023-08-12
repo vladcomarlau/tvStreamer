@@ -7,11 +7,14 @@ Features:
   - Real time HD TV cable streaming with ~6 seconds delay
   - Channel grid menu:
       - automatically updates channel name by taking a screenshot when changing channels
-        (This way it stay updated evem if the TV operator adds/removes TV channels from the channel grid)
+        (This way it stays updated evem if the TV operator adds/removes TV channels from the channel grid)
       - automatically sends corresponding number keys in order to jump between channels as fast as possible
   - Basic username and password authentication using built-in Simple File Server BasicAuthenticator
   - Mobile repsonsive, translucent UI
   - Other controls: power receiver on/off, channel information, channel +/-, back, exit, fullscreen, mute, play/pause
+
+Requirements:
+- FFMPEG installed and added to PATH variable
 
 Hardware used:
   - TV receiver brand KAON, model NA1410HD
