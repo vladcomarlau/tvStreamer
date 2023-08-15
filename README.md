@@ -11,7 +11,7 @@ Features:
       - automatically sends corresponding number keys in order to jump between channels as fast as possible
   - Basic username and password authentication using built-in Simple File Server BasicAuthenticator
   - Mobile repsonsive, translucent UI
-  - Windows GUI:
+  - GUI window:
       - Capture device selection
       - Username and password input fields
       - Logs text area
@@ -31,6 +31,7 @@ Technologies used:
   - jSerialComm for serial port direct USB communication with the ESP8266 microcontroller
   - Maven for dependency management
   - Mostly vanilla Javascript with few parts in JQuerry
+  - Java Swing for GUI
   - Vanilla CSS and HTML5
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img width="500"  alt="Screenshot 2023-08-15 at 23 49 43" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/bcd697dc-c043-41be-9969-7050f44f564a">
