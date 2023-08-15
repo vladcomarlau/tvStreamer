@@ -1,12 +1,8 @@
 package org.example;
-import com.sun.net.httpserver.BasicAuthenticator;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.SimpleFileServer;
 
 import java.io.*;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
@@ -36,7 +32,7 @@ class MyHandler implements HttpHandler {
         StringBuilder content = new StringBuilder();
         String line;
 
-        while ((line = br.readLine()) != null) { // br.readLine is always null!!!
+        while ((line = br.readLine()) != null) {
             content.append(line);
             content.append("\n");
         }

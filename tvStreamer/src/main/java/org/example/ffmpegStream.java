@@ -15,7 +15,7 @@ public class ffmpegStream extends Thread{
             "/tvStreamer/src/main/java/org/example/stream/channels").toAbsolutePath()) + "/";
     public ffmpegStream(String videoDevice, String audioDevice) throws IOException, InterruptedException {
         if(videoDevice == null || audioDevice == null || videoDevice.length()==0 || audioDevice.length() == 0){
-            window.textArea1.append("\nCannot start stream: Devices are not selected!");
+            window.textArea1.append("\n" + window.now() + "Cannot start stream: Devices are not selected!");
         }
         else{
             FileUtils.deleteDirectory(new File(Path.of(new File(".").getAbsolutePath()
@@ -39,11 +39,11 @@ public class ffmpegStream extends Thread{
                     "-segment_time 0  " +
                     "-hls_time 1 " +
                     streamFilesLocation+"/out.m3u8 ";
-            window.textArea1.append("\nTerminating any opened FFMPEG instances...");
+            window.textArea1.append("\n" + window.now() +" Terminating any opened FFMPEG instances...");
             Runtime.getRuntime().exec("taskkill /F /IM ffmpeg.exe");
             TimeUnit.SECONDS.sleep(3);
 
-            window.textArea1.append("\nStarting FFMPEG...\n" + command+"\n");
+            window.textArea1.append("\n" + window.now() + "Starting FFMPEG...\n" + command+"\n");
             DefaultCaret caret = (DefaultCaret)window.textArea1.getCaret();
             caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
             Runtime.getRuntime().exec(command);

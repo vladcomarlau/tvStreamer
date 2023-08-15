@@ -43,7 +43,7 @@ public class arduinoSerial {
         serialPort = SerialPort.getCommPort(SerialPort.getCommPorts()[0].getSystemPortName());
         serialPort.setBaudRate(115200);
         if (serialPort.openPort()){
-            window.textArea1.append("\n\nArduino board\nPort: " +
+            window.textArea1.append("\n\n" + window.now() + "Arduino board\nPort: " +
                     SerialPort.getCommPorts()[0].getSystemPortName() +
                     " - opened \nBaud rate: " + serialPort.getBaudRate());
         }else{
@@ -71,7 +71,7 @@ public class arduinoSerial {
     public static void sendKey(String key) throws IOException {
         serialPort.getOutputStream().write((String.valueOf(keyCodes.get(key))+"\n").getBytes());
         serialPort.getOutputStream().flush();
-        window.textArea1.append("\nKey pressed: " + key);
+        window.textArea1.append("\n" + window.now() + " Key pressed: " + key);
     }
     public static void processCommands(String command) throws InterruptedException {
         if(!command.isEmpty() && !command.equals("null")){

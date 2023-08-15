@@ -10,18 +10,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.UnknownHostException;
-import java.nio.charset.StandardCharsets;
-import java.util.Iterator;
 import java.util.Vector;
+import java.util.Date;
 
 public class window {
     public static final JTextArea textArea1 = new JTextArea();
     public static Vector<String> videoDevices = new Vector<String>();
     public static Vector<String> audioDevices = new Vector<String>();
+    public static String now(){
+        return "["+String.valueOf(new Date()) + "] ";
+    }
     public static void getDevices() throws IOException {
         String[] cmd = {"ffmpeg", "-hide_banner","-list_devices","true","-f","dshow","-i","dummy"};
         ProcessBuilder processBuilder1 = new ProcessBuilder(cmd);
@@ -29,7 +29,7 @@ public class window {
         String output = IOUtils.toString(processBuilder1.start().getErrorStream(), "UTF-8");
         String devices[] = output.split("\\r?\\n");
 
-        window.textArea1.append("\n\nCapture devices found:");
+        window.textArea1.append("\n\n" + window.now() + "Capture devices found:");
         for(int i = 0; i < devices.length-1; i++){
             if (i%2==0){
                 window.textArea1.append("\n"+devices[i]);
@@ -107,7 +107,7 @@ public class window {
                 } catch (UnknownHostException ex) {
                     throw new RuntimeException(ex);
                 }
-                window.textArea1.append("\n\nStarting stream...");
+                window.textArea1.append("\n\n" + window.now() + "Starting stream...");
                 try {
                     new ffmpegStream((String) comboBoxVideo.getSelectedItem(),
                             (String) comboBoxAudio.getSelectedItem());
