@@ -34,7 +34,7 @@ Technologies used:
   - Java Swing for GUI
   - Vanilla CSS and HTML5
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img width="500"  alt="Screenshot 2023-08-15 at 23 49 43" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/bcd697dc-c043-41be-9969-7050f44f564a">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img width="500" alt="Screenshot 2023-08-16 at 01 13 25" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/d7605e7d-4c16-4ea0-b330-e6165dcc2e49">
 
 <img width="579" alt="Screenshot 2023-07-30 at 09 53 18" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/5e88f055-ae74-4eea-9061-3fb084f7dfa2">
 
