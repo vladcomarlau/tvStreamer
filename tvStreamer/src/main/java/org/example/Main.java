@@ -5,34 +5,17 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.SimpleFileServer;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
-        var credentials = new credentials();
-        var addr = new InetSocketAddress("192.168.0.148", 8080);
-        var server = SimpleFileServer.createFileServer(
-                addr,
-                Path.of(new File(".").getAbsolutePath()
-                        +"/tvStreamer/src/main/java/org/example/stream/"),
-                SimpleFileServer.OutputLevel.NONE); //VERBOSE or INFO or NONE
-        System.out.println(Path.of(new File(".").getAbsolutePath()
-                +"/tvStreamer/src/main/java/org/example/stream/"));
-        server.createContext("/home", new MyHandler()).
-                setAuthenticator(new BasicAuthenticator("test") {
-                    @Override
-                    public boolean checkCredentials(String user, String pwd) {
-                        return user.equals(credentials.getUserName())
-                                && pwd.equals(credentials.getPassWord());
-                    }
-                });
-        server.setExecutor(null);
-        server.start();
-        System.out.println("Server started: " + addr);
-        new ffmpegStream();
+        new window();
+        window.textArea1.append("tvStreamer\nVlad Comarlau - August 2023");
         new arduinoSerial();
+        window.getDevices();
     }
 }
 class MyHandler implements HttpHandler {

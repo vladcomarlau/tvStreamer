@@ -1,13 +1,11 @@
 package org.example;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import com.fazecast.jSerialComm.SerialPort;
 public class arduinoSerial {
     public static SerialPort serialPort;
@@ -44,9 +42,15 @@ public class arduinoSerial {
         keyCodes.put("menu",        68192375);
         serialPort = SerialPort.getCommPort(SerialPort.getCommPorts()[0].getSystemPortName());
         serialPort.setBaudRate(115200);
-        System.out.println("Arduino port " +
-                SerialPort.getCommPorts()[0].getSystemPortName() +
-                " opened: " + serialPort.openPort());
+        if (serialPort.openPort()){
+            window.textArea1.append("\n\nArduino board\nPort: " +
+                    SerialPort.getCommPorts()[0].getSystemPortName() +
+                    " - opened \nBaud rate: " + serialPort.getBaudRate());
+        }else{
+            window.textArea1.append("\n\nArduino board found on port " +
+                    SerialPort.getCommPorts()[0].getSystemPortName() +
+                    " - closed \nBaud rate: " + serialPort.getBaudRate());
+        }
     }
     public static void decodeQueryString(String query) {
         try {
@@ -67,10 +71,11 @@ public class arduinoSerial {
     public static void sendKey(String key) throws IOException {
         serialPort.getOutputStream().write((String.valueOf(keyCodes.get(key))+"\n").getBytes());
         serialPort.getOutputStream().flush();
-        System.out.println("Sent command: " + key);
+        window.textArea1.append("\nKey pressed: " + key);
     }
     public static void processCommands(String command) throws InterruptedException {
         if(!command.isEmpty() && !command.equals("null")){
+            window.textArea1.append("\n");
             try{
                 if (Character.isDigit(command.charAt(0))) {
                     if(command.length()<5) {
