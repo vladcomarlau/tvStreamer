@@ -31,7 +31,7 @@ public class Main {
         server.setExecutor(null);
         server.start();
         System.out.println("Server started: " + addr);
-        new ffmpegExecuter();
+        new ffmpegStream();
         new arduinoSerial();
     }
 }

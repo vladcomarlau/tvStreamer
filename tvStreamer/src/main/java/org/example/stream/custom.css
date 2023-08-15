@@ -483,7 +483,6 @@ body::-webkit-scrollbar{
     width: 100%;
     top:calc(50% - 28vw);
     z-index: 1;
-    box-shadow: rgb( 0 0 0 / 0.7) 0px 0px 45px 15px;
 }
 .vjs-modal-dialog, .vjs-control-text, .vjs-big-play-button{
     visibility: hidden;
@@ -520,10 +519,30 @@ body::-webkit-scrollbar{
     transition-delay: 3s;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 900px) {
+    body{
+        background: linear-gradient(-45deg, #2a0b00, #1c0000, #000b2c, #001f19);
+        background-size: 400% 400%;
+        animation: gradient 25s ease infinite;
+    }
     #tvStreamer, #tvStreamer_html5_api{
         top:0%;
     }
+    #tvStreamer_html5_api{
+        box-shadow: rgb( 255 255 255 / 0.8) 0px 0px 145px 15px;
+    }
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
     #channelListBorder {
         height:calc(100% - 56vw);
         top:calc(56vw + 2px);

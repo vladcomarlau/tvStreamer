@@ -70,7 +70,7 @@ public class arduinoSerial {
         System.out.println("Sent command: " + key);
     }
     public static void processCommands(String command) throws InterruptedException {
-        if(!command.isEmpty()){
+        if(!command.isEmpty() && !command.equals("null")){
             try{
                 if (Character.isDigit(command.charAt(0))) {
                     if(command.length()<5) {
@@ -82,7 +82,8 @@ public class arduinoSerial {
                         }
                         Thread.sleep(300);
                         sendKey("ok");
-                        ffmpegExecuter.ffmpegScreenshot(command);
+                        ffmpegScreenshot threadFfmpegScreenshot = new ffmpegScreenshot(command);
+                        threadFfmpegScreenshot.start();
                     }
                 }
                 else{
