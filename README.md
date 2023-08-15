@@ -1,21 +1,25 @@
 # tvStreamer
 Java TV set-top box controller and viewer
 <br>
-<img width="571" alt="Screenshot 2023-07-30 at 09 19 00" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/c51d0dc2-0f07-402b-8ff7-33da555d8817">
+<img width="571" alt="1" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/4de1306c-dc4d-45a2-8588-c89c1ef891d4">
+
 
 Features:
-  - Real time HD TV cable streaming with ~6 seconds delay
+  - Real time HD TV cable streaming with ~10 seconds delay
   - Channel grid menu:
       - automatically updates channel name by taking a screenshot when changing channels
-        (This way it stay updated evem if the TV operator adds/removes TV channels from the channel grid)
+        (This way it stays updated evem if the TV operator adds/removes TV channels from the channel grid)
       - automatically sends corresponding number keys in order to jump between channels as fast as possible
   - Basic username and password authentication using built-in Simple File Server BasicAuthenticator
   - Mobile repsonsive, translucent UI
   - Other controls: power receiver on/off, channel information, channel +/-, back, exit, fullscreen, mute, play/pause
 
+Requirements:
+- FFMPEG installed and added to PATH variable
+
 Hardware used:
   - TV receiver brand KAON, model NA1410HD
-  - PLUSIVO Micro ESP8266 with IR transmitter
+  - PLUSIVO Micro ESP8266 with added IR transmitter
   - HDMI USB capture card
     
 Software used:
