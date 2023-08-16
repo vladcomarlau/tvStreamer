@@ -16,8 +16,7 @@ Features:
       - Username and password input fields
       - Logs text area
   - Other controls: power receiver on/off, channel information, channel +/-, back, exit, fullscreen, mute, play/pause
-
-![diagram](https://github.com/vladcomarlau/tvStreamer/assets/102293760/8606d1b3-d257-4a48-9fa6-0a072d77f88c)
+<img width="500" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/563673b4-dcb4-41f8-9ae0-dcea4ce65645">
 
 Hardware used:
   - TV receiver brand KAON, model NA1410HD
@@ -42,8 +41,5 @@ Download release:
 
 <img width="563" alt="260854263-d7605e7d-4c16-4ea0-b330-e6165dcc2e49" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/dd74ae8c-b57b-461a-be8a-cdbbacad1e67">
 <img width="579" alt="257036880-5e88f055-ae74-4eea-9061-3fb084f7dfa2" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/3632a588-ab56-4602-ae3a-ce0948c73fbc">
-
-
-
 
 
