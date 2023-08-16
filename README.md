@@ -17,10 +17,6 @@ Features:
       - Logs text area
   - Other controls: power receiver on/off, channel information, channel +/-, back, exit, fullscreen, mute, play/pause
 
-Requirements:
-- FFMPEG installed and added to PATH variable
-- OS: Windows (program is dependent on executing CMD commands)
-
 Hardware used:
   - TV receiver brand KAON, model NA1410HD
   - PLUSIVO Micro ESP8266 with added IR transmitter
@@ -34,6 +30,13 @@ Technologies used:
   - Mostly vanilla Javascript with few parts in JQuerry
   - Java Swing for GUI
   - Vanilla CSS and HTML5
+    
+Requirements:
+- FFMPEG installed and added to PATH variable
+- OS: Windows (program is dependent on executing CMD commands)
+
+Download release:
+<a href="https://github.com/vladcomarlau/tvStreamer/releases/tag/v1">tvStreamer_v1.zip</a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img width="500" alt="Screenshot 2023-08-16 at 01 13 25" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/d7605e7d-4c16-4ea0-b330-e6165dcc2e49">
 
