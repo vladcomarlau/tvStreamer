@@ -20,9 +20,11 @@ public class ffmpegScreenshot extends Thread{
             Process p = processBuilder1.start();
             long pid = p.pid();
             window.textArea1.append("\n" + window.now() + "Screenshot process PID "+ pid +" started!");
+            window.textArea1.setCaretPosition(window.textArea1.getDocument().getLength());
             sleep(9000);
             Runtime.getRuntime().exec("taskkill /F /PID " + pid);
             window.textArea1.append("\n" + window.now() + "Terminated screenshot process PID " + pid);
+            window.textArea1.setCaretPosition(window.textArea1.getDocument().getLength());
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }

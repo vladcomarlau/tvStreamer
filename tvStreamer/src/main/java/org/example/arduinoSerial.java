@@ -72,6 +72,7 @@ public class arduinoSerial {
         serialPort.getOutputStream().write((String.valueOf(keyCodes.get(key))+"\n").getBytes());
         serialPort.getOutputStream().flush();
         window.textArea1.append("\n" + window.now() + " Key pressed: " + key);
+        window.textArea1.setCaretPosition(window.textArea1.getDocument().getLength());
     }
     public static void processCommands(String command) throws InterruptedException {
         if(!command.isEmpty() && !command.equals("null")){

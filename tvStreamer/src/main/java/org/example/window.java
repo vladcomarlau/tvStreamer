@@ -21,6 +21,26 @@ public class window {
     public static String now(){
         return "["+String.valueOf(new Date()) + "] ";
     }
+    public static boolean checkFFMPEG() throws IOException {
+        boolean ffmpegExists = false;
+        for(String folder : System.getenv("PATH").split(";")) {
+            if(folder.contains("ffmpeg")){
+                ffmpegExists = true;
+            }
+        }
+        if(ffmpegExists){
+            window.textArea1.append("\n" + window.now() + "FFMPEG found");
+            window.getDevices();
+        }
+        else {
+            window.textArea1.append("\n" + window.now() + "FFMPEG NOT found in PATH");
+            window.audioDevices.clear();
+            window.videoDevices.clear();
+            window.audioDevices.add("FFMPEG NOT FOUND");
+            window.videoDevices.add("FFMPEG NOT FOUND");
+        }
+        return ffmpegExists;
+    }
     public static void getDevices() throws IOException {
         String[] cmd = {"ffmpeg", "-hide_banner","-list_devices","true","-f","dshow","-i","dummy"};
         ProcessBuilder processBuilder1 = new ProcessBuilder(cmd);
@@ -106,11 +126,17 @@ public class window {
                 } catch (UnknownHostException ex) {
                     throw new RuntimeException(ex);
                 }
-                window.textArea1.append("\n\n" + window.now() + "Starting stream...");
                 try {
-                    new ffmpegStream((String) comboBoxVideo.getSelectedItem(),
-                            (String) comboBoxAudio.getSelectedItem());
-                } catch (IOException | InterruptedException ex) {
+                    if(window.checkFFMPEG() && server.checkStreamFolder()){
+                        window.textArea1.append("\n\n" + window.now() + "Starting stream...");
+                        try {
+                            new ffmpegStream((String) comboBoxVideo.getSelectedItem(),
+                                    (String) comboBoxAudio.getSelectedItem());
+                        } catch (IOException | InterruptedException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
             }
