@@ -17,6 +17,8 @@ Features:
       - Logs text area
   - Other controls: power receiver on/off, channel information, channel +/-, back, exit, fullscreen, mute, play/pause
 
+![diagram](https://github.com/vladcomarlau/tvStreamer/assets/102293760/59511499-a1ad-4047-94cc-524d3d5a29e7)
+
 Hardware used:
   - TV receiver brand KAON, model NA1410HD
   - PLUSIVO Micro ESP8266 with added IR transmitter
