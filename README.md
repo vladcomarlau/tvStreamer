@@ -1,5 +1,5 @@
 # tvStreamer
-Java TV set-top box controller and viewer
+Java TV set-top box web interface (remote control and viewer)
 <br>
 <img width="571" alt="1" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/4de1306c-dc4d-45a2-8588-c89c1ef891d4">
 
