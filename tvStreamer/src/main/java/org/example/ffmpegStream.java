@@ -10,18 +10,18 @@ import java.util.concurrent.TimeUnit;
 
 public class ffmpegStream extends Thread{
     public static Path streamFilesLocation = Path.of(new File(".").getAbsolutePath()+
-            "/tvStreamer/src/main/java/org/example/stream/video").toAbsolutePath();
+            "/stream/video").toAbsolutePath();
     public static String channelFiles = String.valueOf(Path.of(new File(".").getAbsolutePath() +
-            "/tvStreamer/src/main/java/org/example/stream/channels").toAbsolutePath()) + "/";
+            "/stream/channels").toAbsolutePath()) + "/";
     public ffmpegStream(String videoDevice, String audioDevice) throws IOException, InterruptedException {
         if(videoDevice == null || audioDevice == null || videoDevice.length()==0 || audioDevice.length() == 0){
             window.textArea1.append("\n" + window.now() + "Cannot start stream: Devices are not selected!");
         }
         else{
             FileUtils.deleteDirectory(new File(Path.of(new File(".").getAbsolutePath()
-                    +"/tvStreamer/src/main/java/org/example/stream/video/").toUri()));
+                    +"/stream/video/").toUri()));
             new File(String.valueOf(new File(Path.of(new File(".").getAbsolutePath()
-                    +"/tvStreamer/src/main/java/org/example/stream/video/").toUri()).mkdirs()));
+                    +"/stream/video/").toUri()).mkdirs()));
             var command = " cmd.exe /c start " + //-itsoffset -6   pt sound offset
                     "ffmpeg " +
                     "-rtbufsize 1000M " +

@@ -3,7 +3,6 @@ package org.example;
 import com.sun.net.httpserver.BasicAuthenticator;
 import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.SimpleFileServer;
-
 import java.io.File;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -24,8 +23,8 @@ public class server {
             server = SimpleFileServer.createFileServer(
                     addr,
                     Path.of(new File(".").getAbsolutePath()
-                            +"/tvStreamer/src/main/java/org/example/stream/"),
-                    SimpleFileServer.OutputLevel.NONE); //VERBOSE or INFO or NONE
+                            +"/stream/"),
+                    SimpleFileServer.OutputLevel.INFO); //VERBOSE or INFO or NONE
             server.createContext("/home", new MyHandler()).
                     setAuthenticator(new BasicAuthenticator("test") {
                         @Override
@@ -34,17 +33,17 @@ public class server {
                                     && pwd.equals(password);
                         }
                     });
+
             server.setExecutor(null);
             server.start();
             window.textArea1.append("\n" + window.now() + "Server started at address: " + addr);
             window.textArea1.append("\n" + window.now() + "Username: " + username);
             window.textArea1.append("\n" + window.now() + "Password: " + password);
             window.textArea1.append("\n" + window.now() + "Server root folder: "+Path.of(new File(".").getAbsolutePath()
-                    +"/tvStreamer/src/main/java/org/example/stream/"));
+                    +"/stream/"));
         }
         else{
             window.textArea1.append("\n\n" + window.now() + "Server cannot be started: Username or password have not been inserted!");
         }
-
     }
 }

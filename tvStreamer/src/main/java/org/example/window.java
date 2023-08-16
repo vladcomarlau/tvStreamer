@@ -1,7 +1,6 @@
 package org.example;
 
 import org.apache.commons.io.IOUtils;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.text.DefaultCaret;
@@ -45,7 +44,7 @@ public class window {
                 }
             }
         }
-
+        window.textArea1.append("\n");
     }
     public window() throws IOException {
         var frame = new JFrame("tvStreamer");
@@ -133,9 +132,19 @@ public class window {
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 if(server.server != null){
+                    window.textArea1.append("\n" + window.now() +" Terminating any opened FFMPEG instances...");
+                    try {
+                        Runtime.getRuntime().exec("taskkill /F /IM ffmpeg.exe");
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    window.textArea1.append("\n" + window.now() +" Stopping server...");
                     server.server.stop(0);
+                    window.textArea1.append("\n" + window.now() +" Server stopped... exiting program...");
+                    System.exit(0);
                 }
             }
         });
     }
 }
+
