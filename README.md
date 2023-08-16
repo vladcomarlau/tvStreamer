@@ -17,7 +17,7 @@ Features:
       - Logs text area
   - Other controls: power receiver on/off, channel information, channel +/-, back, exit, fullscreen, mute, play/pause
 
-![diagram](https://github.com/vladcomarlau/tvStreamer/assets/102293760/59511499-a1ad-4047-94cc-524d3d5a29e7)
+![diagram](https://github.com/vladcomarlau/tvStreamer/assets/102293760/e304980c-c183-42ae-af1b-588debdbc588)
 
 Hardware used:
   - TV receiver brand KAON, model NA1410HD
