@@ -4,7 +4,7 @@ Java Live TV server (remote control and viewer)
 <img width="571" alt="1" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/4de1306c-dc4d-45a2-8588-c89c1ef891d4">
 ---
 ## Features:
-  - Real time HD TV cable streaming with ~10 seconds delay (accessible from Desktop, iOS / Android)
+  - Live HD TV cable streaming with ~10 seconds delay (accessible from Desktop, iOS / Android)
   - Channel grid menu:
       - automatically updates channel name by taking a screenshot when changing channels
         (This way it stays updated evem if the TV operator adds/removes TV channels from the channel grid)
