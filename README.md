@@ -2,8 +2,8 @@
 Java TV set-top box web interface (remote control and viewer)
 <br>
 <img width="571" alt="1" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/4de1306c-dc4d-45a2-8588-c89c1ef891d4">
-
-Features:
+---
+## Features:
   - Real time HD TV cable streaming with ~10 seconds delay (accessible from Desktop, iOS / Android)
   - Channel grid menu:
       - automatically updates channel name by taking a screenshot when changing channels
@@ -18,12 +18,14 @@ Features:
   - Other controls: power receiver on/off, channel information, channel +/-, back, exit, fullscreen, mute, play/pause
 <img width="500" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/563673b4-dcb4-41f8-9ae0-dcea4ce65645">
 
-Hardware used:
+---
+## Hardware used:
   - TV receiver brand KAON, model NA1410HD
   - PLUSIVO Micro ESP8266 with added IR transmitter
   - HDMI USB capture card
-    
-Technologies used:
+
+---
+## Technologies used:
   - FFMPEG for HLS protocol live stream enconding (M3U8 / x-mpegURL manifest file with TS video fragments)
   - JAVA Simple File Server with multithreading for screenshot synchronization / waiting
   - jSerialComm for serial port direct USB communication with the ESP8266 microcontroller
@@ -31,12 +33,14 @@ Technologies used:
   - Mostly vanilla Javascript with few parts in JQuerry
   - Java Swing for GUI
   - Vanilla CSS and HTML5
-    
-Requirements:
+
+---
+## Requirements:
 - FFMPEG installed and added to PATH variable
 - OS: Windows (program is dependent on executing CMD commands)
+---
 
-Download release:
+## Download release:
 <a href="https://github.com/vladcomarlau/tvStreamer/releases/tag/v1">tvStreamer_v1.zip</a>
 
 <img width="563" alt="260854263-d7605e7d-4c16-4ea0-b330-e6165dcc2e49" src="https://github.com/vladcomarlau/tvStreamer/assets/102293760/dd74ae8c-b57b-461a-be8a-cdbbacad1e67">
