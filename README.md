@@ -29,7 +29,7 @@ Java Live TV server (remote control and viewer)
   - FFMPEG for HLS protocol live stream enconding (M3U8 / x-mpegURL manifest file with TS video fragments)
   - JAVA Simple File Server with multithreading for screenshot synchronization / waiting
   - jSerialComm for serial port direct USB communication with the ESP8266 microcontroller
-  - Maven for dependency management
+  - Maven build tool
   - Mostly vanilla Javascript with few parts in JQuerry
   - Java Swing for GUI
   - Vanilla CSS and HTML5
